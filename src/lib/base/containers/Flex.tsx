@@ -1,0 +1,40 @@
+import { twMerge } from "tailwind-merge";
+
+type IFlex = React.HTMLAttributes<HTMLDivElement> & {
+  flexY?: "center" | "start" | "end" | "between" | "stretch";
+  flexX?: "center" | "start" | "end" | "between" | "stretch";
+  resposive?: "sm" | "md" | "lg" | "xl" | "2xl";
+  gap?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+};
+
+export const Flex = (props: IFlex) => {
+  const { className, flexY = "center", flexX = "start", gap = 2 } = props;
+  const flexStyle = [];
+  if (flexY) flexStyle.push(`items-${flexY}`);
+  if (flexX) flexStyle.push(`justify-${flexX}`);
+  if (gap !== undefined) flexStyle.push(`gap-${gap}`);
+  if (className) flexStyle.push(className);
+  return (
+    <div {...props} className={twMerge(`w-full flex ${flexStyle.join(" ")}`)} />
+  );
+};
+
+export const Row = ({ className, ...props }: IFlex) => {
+  const flexStyle = [];
+  if (className) flexStyle.push(className);
+  if (props.resposive) flexStyle.push(`flex-col ${props.resposive}:flex-row`);
+  else flexStyle.push("flex-row");
+  return <Flex {...props} className={`${flexStyle.join(" ")}`} />;
+};
+
+export const Column = ({ className, ...props }: IFlex) => {
+  return <Flex {...props} className={`h-full flex-col ${className}`} />;
+};
+
+/* tailwind include
+    flex flex-row flex-col
+    items-center items-start items-end items-between items-stretch
+    justify-center justify-start justify-end justify-between justify-stretch
+    gap-0 gap-1 gap-2 gap-3 gap-4 gap-5 gap-6 gap-7 gap-8 gap-9 gap-10
+    sm:flex-row md:flex-row lg:flex-row xl:flex-row 2xl:flex-row
+*/

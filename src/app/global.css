@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes l1 {
+  to {
+    transform: rotate(0.5turn);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  @apply bg-bg3 text-text3;
+}
+
+.loader-bg {
+  animation: fade-in 1s;
+}
+
+.loader-spinner {
+  animation: l1 0.5s ease-out infinite;
+}
+
+.react-selector {
+  @apply w-full;
+}
+
+.react-selector__control {
+  @apply border rounded-md;
+}
+
+.react-selector.error .react-selector__control {
+  @apply border-default-red;
+}
