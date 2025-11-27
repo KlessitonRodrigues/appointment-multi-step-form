@@ -19,9 +19,23 @@ export const LoaderSpinner = ({ className, ...props }: ILoader) => {
     <div
       {...props}
       className={twMerge(
-        `loader-spinner w-10 aspect-square border-solid border-[8px] border-transparent
+        `loader-spinner w-6 aspect-square border-solid border-[2px] border-transparent
          border-t-main border-b-main rounded-full`
       )}
     />
+  );
+};
+
+export const ListLoader = ({ className, title, ...props }: ILoader) => {
+  return (
+    <div
+      {...props}
+      className={twMerge(
+        `w-full flex gap-4 items-center border rounded-lg p-4 ${className}`
+      )}
+    >
+      <LoaderSpinner />
+      {title && <p className="text-text2">{title}</p>}
+    </div>
   );
 };

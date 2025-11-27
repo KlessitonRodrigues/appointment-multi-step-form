@@ -1,6 +1,8 @@
 import { twMerge } from "tailwind-merge";
 
-type IButton = React.HTMLAttributes<HTMLButtonElement>;
+export type IButton = React.HTMLAttributes<HTMLButtonElement> & {
+  type?: "button" | "submit" | "reset";
+};
 
 export const Button = ({ className = "", ...props }: IButton) => {
   return (

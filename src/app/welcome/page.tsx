@@ -18,7 +18,7 @@ const WelcomePage = () => {
             agendamento em poucos passos. Nosso processo é rápido, intuitivo e
             feito para facilitar o seu dia a dia.
           </Text>
-          <Link href="/appointment?step=1">
+          <Link href="/appointment">
             <ButtonBlue>Agendar</ButtonBlue>
           </Link>
         </Column>

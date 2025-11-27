@@ -21,7 +21,8 @@ export const VerticalNav = (props: IVerticalNav) => {
         return (
           <Row
             key={index}
-            className={twMerge(`before:border before:border-gray-200 before:-mr-8
+            gap={4}
+            className={twMerge(`before:border before:border-gray-200 before:-mr-10
                 before:h-20 hover:opacity-80 cursor-pointer  
                 ${halfTop ? "before:h-10 before:mt-10" : ""}
                 ${halfbottom ? "before:h-10 before:mb-10" : ""}`)}

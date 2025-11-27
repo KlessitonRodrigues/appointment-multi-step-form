@@ -1,12 +1,12 @@
 type IIF = {
-  check?: boolean;
+  condition?: boolean;
   true?: React.ReactNode;
   false?: React.ReactNode;
   children?: React.ReactNode;
 };
 
 const If = (props: IIF) => {
-  return props.check ? props.true || props.children : props.false;
+  return props.condition ? props.true || props.children : props.false;
 };
 
 export default If;

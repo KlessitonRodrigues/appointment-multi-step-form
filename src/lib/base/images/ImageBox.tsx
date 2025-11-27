@@ -7,8 +7,8 @@ type IImageBox = React.HTMLAttributes<HTMLDivElement> & {
 
 export const ImageBox = ({ className, ...props }: IImageBox) => {
   return (
-    <div {...props} className={twMerge(`rounded-lg ${className}`)}>
-      <Image src={props.src} alt="" />
+    <div {...props} className={twMerge(`rounded-lg w-full ${className}`)}>
+      <Image src={props.src} alt="" className="w-full" />
     </div>
   );
 };

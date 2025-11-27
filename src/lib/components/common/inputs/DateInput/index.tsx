@@ -4,6 +4,7 @@ type IInputField = {
   name?: string;
   label?: string;
   placeholder?: string;
+  time?: boolean;
   error?: string;
   input?: any;
   value?: string;
@@ -11,14 +12,14 @@ type IInputField = {
 };
 
 const DateInput = (props: IInputField) => {
-  const { name, label, placeholder, error, input, value, onChangeValue } =
+  const { name, label, placeholder, time, error, input, value, onChangeValue } =
     props;
 
   return (
     <Label>
       {label}
       <Input
-        type="date"
+        type={time ? "time" : "date"}
         id={name}
         name={name}
         placeholder={placeholder}

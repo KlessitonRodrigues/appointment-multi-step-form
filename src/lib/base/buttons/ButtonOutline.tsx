@@ -1,13 +1,12 @@
 import { twMerge } from "tailwind-merge";
-
-type IButton = React.HTMLAttributes<HTMLButtonElement>;
+import { IButton } from "./Button";
 
 export const ButtonOutline = ({ className = "", ...props }: IButton) => {
   return (
     <button
       {...props}
       className={twMerge(
-        `flex gap-1 items-center px-3 py-1.5 w-fit rounded-md border
+        `flex gap-1 items-center px-4 py-1.5 w-fit rounded-md
          text-text4 bg-transparent hover:bg-bg2 transition-opacity 
          first-letter:uppercase ${className}`
       )}

@@ -2,6 +2,7 @@ import { twMerge } from "tailwind-merge";
 
 type IText = React.HTMLAttributes<HTMLParagraphElement> & {
   bold?: boolean;
+  inline?: boolean;
   className?: string;
   fc?: "blue" | "red" | "green" | "yellow" | "black" | "gray" | "white";
   fs?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
@@ -32,9 +33,10 @@ const Text = (props: IText) => {
   const { bold, fc, fs, fo, className = "" } = props;
   const textStyle = [];
   if (bold) textStyle.push("font-bold");
-  if (fc) textStyle.push(`text-${fc}-500`);
+  if (fc) textStyle.push(`text-default-${fc}`);
   if (fs) textStyle.push(`text-${fs}`);
   if (fo) textStyle.push(`opacity-${fo}`);
+  if (props.inline) textStyle.push("inline");
   if (className) textStyle.push(className);
   return <TagMap {...props} className={twMerge(`${textStyle.join(" ")}`)} />;
 };
@@ -44,6 +46,6 @@ export default Text;
 /* tailwind include
     font-bold font-normal
     text-sm text-md text-lg text-xl text-2xl text-3xl text-4xl text-5xl
-    text-blue-500 text-red-500 text-green-500 text-yellow-500 text-black-500 text-gray-500 text-white-500
+    text-default-blue text-default-red text-default-green text-default-yellow text-default-black text-default-gray text-default-white
     opacity-10 opacity-20 opacity-30 opacity-40 opacity-50 opacity-60 opacity-70 opacity-80 opacity-90 opacity-100
 */
