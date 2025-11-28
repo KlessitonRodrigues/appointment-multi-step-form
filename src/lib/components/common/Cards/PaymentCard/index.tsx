@@ -7,13 +7,14 @@ type IPaymentCard = {
   icon?: React.ReactNode;
   data?: IPaymentModel;
   selected?: boolean;
+  onSelect?: () => void;
 };
 
 const PaymentCard = (props: IPaymentCard) => {
-  const { data, icon, selected } = props;
+  const { data, icon, selected, onSelect } = props;
 
   return (
-    <SelectableCard selected={selected}>
+    <SelectableCard selected={selected} onClick={onSelect}>
       <Row gap={4}>
         <Text fc="blue">{icon}</Text>
         <Text fs="xl">{data?.name}</Text>

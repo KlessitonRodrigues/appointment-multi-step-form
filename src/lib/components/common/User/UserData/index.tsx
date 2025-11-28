@@ -13,7 +13,7 @@ export const UserData = (props: IUserData) => {
   return (
     <Row className="w-fit" gap={4}>
       <ImageBox src={avatarSrc} className="w-20" />
-      <Column flexY="start" gap={0}>
+      <Column flexX="start" gap={0}>
         <Text fo="50">Bem Vindo</Text>
         <Text fc="blue" fs="lg">
           {name}

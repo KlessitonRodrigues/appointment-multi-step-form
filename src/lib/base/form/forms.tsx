@@ -6,7 +6,7 @@ export const Form = ({ className, ...props }: IForm) => {
   return (
     <form
       {...props}
-      className={twMerge(`w-full flex flex-col gap-4 ${className}`)}
+      className={twMerge(`w-full h-full flex flex-col gap-4 ${className}`)}
     />
   );
 };

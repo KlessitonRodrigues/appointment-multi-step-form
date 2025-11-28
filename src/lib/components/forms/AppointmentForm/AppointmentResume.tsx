@@ -19,9 +19,13 @@ import {
   PiMapPin,
   PiStethoscope,
 } from "react-icons/pi";
+import { dateInputToISO, formatDateAndTime } from "src/utils/date";
 
 type IAppointmentResumeForm = {
   appointment?: IAppointmentModel;
+  onSubmit?: (data: IAppointmentModel) => void;
+  onNext?: () => void;
+  onBack?: () => void;
 };
 
 export const resolver: Resolver<IAppointmentModel> = async (data, ctx, opt) => {
@@ -30,28 +34,35 @@ export const resolver: Resolver<IAppointmentModel> = async (data, ctx, opt) => {
 };
 
 const AppointmentResumeForm = (props: IAppointmentResumeForm) => {
-  const { appointment } = props;
+  const { appointment, onNext, onBack } = props;
   const values = { ...AppointmentModel, ...appointment };
   const { register, formState, ...form } = useForm({ values, resolver });
-  const onSubmit = async (data: IAppointmentModel) => {};
+  const onSubmit = async (data: IAppointmentModel) => {
+    if (onNext) onNext();
+  };
 
   return (
     <Form onSubmit={form.handleSubmit(onSubmit)}>
       <Text fs="lg">John, aqui está o resumo da sua consulta</Text>
-      <Text fs="sm" fo="40">
+      <Text fs="sm" fo="50">
         Revise com atenção antes de confirmar
       </Text>
       <If condition={false}>
         <ListLoader title="Aguarde... estamos buscando os métodos de pagamento disponíveis" />
       </If>
-      <Column flexY="start" gap={4}>
+      <Column flexX="start" gap={4}>
         <Row>
           <div className="p-2 border rounded-full">
             <PiCalendarDots size={24} className="text-default-blue" />
           </div>
           <Text>
             <span className="opacity-60 mr-1">A sua consulta será no dia</span>
-            <b>10 de Nov, segunda-feira às 14h.</b>
+            <b>
+              {formatDateAndTime(
+                dateInputToISO(appointment?.date || "") || "",
+                appointment?.time || ""
+              )}
+            </b>
           </Text>
         </Row>
 
@@ -61,7 +72,7 @@ const AppointmentResumeForm = (props: IAppointmentResumeForm) => {
           </div>
           <Text>
             <span className="opacity-60 mr-1">A sua consulta será no dia</span>
-            <b>Dra. Elena Schultz. </b>
+            <b>{appointment?.doctorName}</b>
           </Text>
         </Row>
 
@@ -70,7 +81,9 @@ const AppointmentResumeForm = (props: IAppointmentResumeForm) => {
             <PiMapPin size={24} className="text-default-blue" />
           </div>
           <Text>
-            <span className="opacity-60 mr-1">Na Clínica Medica - Sul</span>
+            <span className="opacity-60 mr-1">
+              Na {appointment?.clinicName}
+            </span>
           </Text>
         </Row>
         <Row>
@@ -79,14 +92,16 @@ const AppointmentResumeForm = (props: IAppointmentResumeForm) => {
           </div>
           <Text>
             <span className="opacity-60 mr-1">Valor da consulta</span>
-            <b>R$ 70,00</b>
+            <b>R$ {appointment?.price}</b>
             <span>, no </span>
-            <b>cartão de crédito.</b>
+            <b>{appointment?.paymentName}</b>
           </Text>
         </Row>
       </Column>
       <Row className="w-fit ml-auto">
-        <ButtonOutline type="button">Voltar</ButtonOutline>
+        <ButtonOutline type="button" onClick={onBack}>
+          Voltar
+        </ButtonOutline>
         <ButtonBlue type="submit">Continuar</ButtonBlue>
       </Row>
     </Form>

@@ -27,11 +27,6 @@ const DateInput = (props: IInputField) => {
         value={value}
         haserror={error}
         onChange={(ev: any) => onChangeValue?.(ev.target?.value)}
-        onKeyDown={(ev) => {
-          if (ev.key.length === 1 && ev.key.match(/[\D]/g)) {
-            ev.preventDefault();
-          }
-        }}
         {...input}
       />
       <LabelError>{error}</LabelError>

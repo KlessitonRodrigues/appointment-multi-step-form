@@ -1,4 +1,5 @@
 import { twMerge } from "tailwind-merge";
+import { RiLoader4Line } from "react-icons/ri";
 
 type ILoader = React.HTMLAttributes<HTMLDivElement>;
 
@@ -34,7 +35,7 @@ export const ListLoader = ({ className, title, ...props }: ILoader) => {
         `w-full flex gap-4 items-center border rounded-lg p-4 ${className}`
       )}
     >
-      <LoaderSpinner />
+      <RiLoader4Line size={24} className="animate-spin text-default-blue" />
       {title && <p className="text-text2">{title}</p>}
     </div>
   );

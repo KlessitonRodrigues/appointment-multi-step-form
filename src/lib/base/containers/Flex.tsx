@@ -7,28 +7,28 @@ type IFlex = React.HTMLAttributes<HTMLDivElement> & {
   gap?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 };
 
-export const Flex = (props: IFlex) => {
-  const { className, flexY = "center", flexX = "start", gap = 2 } = props;
-  const flexStyle = [];
-  if (flexY) flexStyle.push(`items-${flexY}`);
-  if (flexX) flexStyle.push(`justify-${flexX}`);
-  if (gap !== undefined) flexStyle.push(`gap-${gap}`);
-  if (className) flexStyle.push(className);
-  return (
-    <div {...props} className={twMerge(`w-full flex ${flexStyle.join(" ")}`)} />
-  );
-};
-
-export const Row = ({ className, ...props }: IFlex) => {
-  const flexStyle = [];
-  if (className) flexStyle.push(className);
+export const Row = (props: IFlex) => {
+  const { className, flexY, flexX, gap } = props;
+  const flexStyle = ["flex flex-row w-full"];
+  flexStyle.push(`justify-${flexY || "start"}`);
+  flexStyle.push(`items-${flexX || "center"}`);
+  flexStyle.push(`gap-${gap ?? 2}`);
   if (props.resposive) flexStyle.push(`flex-col ${props.resposive}:flex-row`);
   else flexStyle.push("flex-row");
-  return <Flex {...props} className={`${flexStyle.join(" ")}`} />;
+  if (className) flexStyle.push(className);
+
+  return <div {...props} className={twMerge(flexStyle.join(" "))} />;
 };
 
-export const Column = ({ className, ...props }: IFlex) => {
-  return <Flex {...props} className={`h-full flex-col ${className}`} />;
+export const Column = (props: IFlex) => {
+  const { className, flexY, flexX, gap } = props;
+  const flexStyle = ["w-full h-full flex flex-col"];
+  flexStyle.push(`justify-${flexY || "start"}`);
+  flexStyle.push(`items-${flexX || "center"}`);
+  flexStyle.push(`gap-${gap ?? 2}`);
+  if (className) flexStyle.push(className);
+
+  return <div {...props} className={twMerge(flexStyle.join(" "))} />;
 };
 
 /* tailwind include
