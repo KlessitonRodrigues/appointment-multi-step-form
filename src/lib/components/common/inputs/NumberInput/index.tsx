@@ -26,6 +26,7 @@ const NumberInput = (props: IInputField) => {
     const key = ev.key as string;
     const ipt = ev.target as HTMLInputElement;
     const display = document.getElementById(`display-${ipt.name}`);
+    // @ts-ignore
     const maskLength = mask.matchAll(/(x)/g).toArray().length;
 
     const formatMask = (str: string, template: string) => {
