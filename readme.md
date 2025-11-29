@@ -21,11 +21,13 @@
 - Run local tests
 
   ```
+  cd ./_selenium
   yarn test-dev
   ```
 
 - Run production tests
   ```
+  cd ./_selenium
   yarn test-prod
   ```
 
