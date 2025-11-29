@@ -1,0 +1,33 @@
+{
+  "name": "page-tests",
+  "version": "1.0.0",
+  "main": "dist/main.js",
+  "license": "MIT",
+  "scripts": {
+    "test-dev": "NODE_ENV=dev jest --runInBand",
+    "test-build": "NODE_ENV=build jest --runInBand",
+    "test-prod": "NODE_ENV=prod jest --runInBand"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^22.14.1",
+    "@types/selenium-webdriver": "^4.1.22",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.3.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "selenium-webdriver": "^4.31.0"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "verbose": true,
+    "testTimeout": 60000,
+    "roots": [
+      "./src/tests"
+    ]
+  }
+}
