@@ -28,13 +28,13 @@ type IAppointmentPaymentForm = {
 };
 
 const paymentMethodMap: (IPaymentModel & { icon: JSX.Element })[] = [
-  { id: 1, name: "Pix", icon: <PiPixLogo size={32} /> },
+  { id: 1, name: "Pix", icon: <PiPixLogo size={28} /> },
   {
     id: 2,
     name: "Cartão de Crédito",
-    icon: <PiCreditCard size={32} />,
+    icon: <PiCreditCard size={28} />,
   },
-  { id: 3, name: "Dinheiro", icon: <PiMoney size={32} /> },
+  { id: 3, name: "Dinheiro", icon: <PiMoney size={28} /> },
 ];
 
 export const resolver: Resolver<IAppointmentModel> = async (data, ctx, opt) => {
@@ -83,7 +83,9 @@ const AppointmentPaymentForm = (props: IAppointmentPaymentForm) => {
         <ButtonOutline type="button" onClick={onBack}>
           Voltar
         </ButtonOutline>
-        <ButtonBlue type="submit">Continuar</ButtonBlue>
+        <ButtonBlue type="submit" disabled={!paymentId}>
+          Continuar
+        </ButtonBlue>
       </Row>
     </Form>
   );

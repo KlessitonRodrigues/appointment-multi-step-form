@@ -28,7 +28,7 @@ const DoctorCard = (props: IDoctorCard) => {
         <Text tag="span" fo="50" inline>
           A partir de
         </Text>
-        <Text tag="span" fc="blue" inline>
+        <Text tag="b" fo="80" fc="blue" inline>
           R$ {data?.price}
         </Text>
       </Row>

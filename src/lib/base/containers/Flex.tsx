@@ -10,8 +10,8 @@ type IFlex = React.HTMLAttributes<HTMLDivElement> & {
 export const Row = (props: IFlex) => {
   const { className, flexY, flexX, gap } = props;
   const flexStyle = ["flex flex-row w-full"];
-  flexStyle.push(`justify-${flexY || "start"}`);
-  flexStyle.push(`items-${flexX || "center"}`);
+  flexStyle.push(`justify-${flexX || "start"}`);
+  flexStyle.push(`items-${flexY || "center"}`);
   flexStyle.push(`gap-${gap ?? 2}`);
   if (props.resposive) flexStyle.push(`flex-col ${props.resposive}:flex-row`);
   else flexStyle.push("flex-row");

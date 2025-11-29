@@ -48,7 +48,12 @@ const AppointmentDoctorForm = (props: IAppointmentDoctorForm) => {
   return (
     <Form onSubmit={form.handleSubmit(onSubmit)}>
       <Column flexX="start">
-        <Text fs="lg">Baseados em sua pesquisa</Text>
+        <Row flexX="between">
+          <Text fs="lg">Baseados em sua pesquisa</Text>
+          <Text fs="sm" fc="blue">
+            Ver mais
+          </Text>
+        </Row>
         <Text fc="red">{formState.errors.doctorId?.message}</Text>
         <If condition={getDoctors.isLoading}>
           <ListLoader title="Aguarde... estamos buscando os médicos disponíveis" />
@@ -67,7 +72,13 @@ const AppointmentDoctorForm = (props: IAppointmentDoctorForm) => {
             />
           ))}
         </HorizontalNav>
-        <Text fs="lg">Médicos recomendados</Text>
+
+        <Row flexX="between">
+          <Text fs="lg">Médicos recomendados</Text>
+          <Text fs="sm" fc="blue">
+            Ver mais
+          </Text>
+        </Row>
         <If condition={getDoctors.isLoading}>
           <ListLoader title="Aguarde... estamos buscando os médicos disponíveis" />
         </If>
@@ -90,7 +101,9 @@ const AppointmentDoctorForm = (props: IAppointmentDoctorForm) => {
         <ButtonOutline type="button" onClick={onBack}>
           Voltar
         </ButtonOutline>
-        <ButtonBlue type="submit">Continuar</ButtonBlue>
+        <ButtonBlue type="submit" disabled={!doctorId}>
+          Continuar
+        </ButtonBlue>
       </Row>
     </Form>
   );

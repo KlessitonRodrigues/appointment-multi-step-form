@@ -17,7 +17,7 @@ const ClinicCard = (props: IClinicCard) => {
     <SelectableCard selected={selected} onClick={onSelect}>
       <ImageBox src={data.avatarUrl || ""} />
       <Text fs="lg">{data.name}</Text>
-      <Row flexX="center">
+      <Row flexY="center">
         <PiMapPin size={32} className="text-blue-500" />
         <Column flexX="start" gap={0}>
           <Text fo="50" fs="sm">

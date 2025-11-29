@@ -1,9 +1,12 @@
+"use client";
+
 import { Column, Row } from "src/lib/base/containers/Flex";
 import { PageFull } from "src/lib/base/containers/Page";
 import Text from "src/lib/base/text/Text_2";
 import { RoundedImageBox } from "src/lib/base/images/ImageBox";
 import { ButtonBlue } from "src/lib/base/buttons/Button";
 import Link from "next/link";
+import { AnimationSlide } from "src/lib/base/animations/Slide";
 
 const WelcomePage = () => {
   return (
@@ -14,15 +17,21 @@ const WelcomePage = () => {
           className="max-w-[22rem]"
         />
         <Column gap={4} flexX="start" className="h-fit">
-          <Text fs="2xl">Agende sua consulta de forma simples</Text>
-          <Text fo="70">
-            Escolha a melhor data, horário e clínica disponível e conclua seu
-            agendamento em poucos passos. Nosso processo é rápido, intuitivo e
-            feito para facilitar o seu dia a dia.
-          </Text>
-          <Link href="/appointment">
-            <ButtonBlue>Agendar</ButtonBlue>
-          </Link>
+          <AnimationSlide to="top" delay={0.5}>
+            <Text fs="2xl">Agende sua consulta de forma simples</Text>
+          </AnimationSlide>
+          <AnimationSlide to="bottom" delay={1}>
+            <Text fo="70">
+              Escolha a melhor data, horário e clínica disponível e conclua seu
+              agendamento em poucos passos. Nosso processo é rápido, intuitivo e
+              feito para facilitar o seu dia a dia.
+            </Text>
+          </AnimationSlide>
+          <AnimationSlide to="bottom" delay={1.5}>
+            <Link href="/appointment">
+              <ButtonBlue>Agendar</ButtonBlue>
+            </Link>
+          </AnimationSlide>
         </Column>
       </Row>
     </PageFull>

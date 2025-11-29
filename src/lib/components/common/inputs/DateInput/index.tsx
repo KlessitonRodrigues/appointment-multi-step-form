@@ -26,6 +26,7 @@ const DateInput = (props: IInputField) => {
         autoComplete={name}
         value={value}
         haserror={error}
+        data-error={!!error}
         onChange={(ev: any) => onChangeValue?.(ev.target?.value)}
         {...input}
       />

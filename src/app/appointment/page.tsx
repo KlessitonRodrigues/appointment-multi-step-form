@@ -13,7 +13,7 @@ import {
 } from "react-icons/pi";
 import AppointmentForm from "src/lib/components/forms/AppointmentForm";
 import { useFormSteps } from "src/hooks/useFormStep";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 const getFormSteps = (step: number) => [
   {
@@ -45,9 +45,13 @@ const AppointmentPage = () => {
     [formSteps.step]
   );
 
+  useEffect(() => {
+    formSteps.setStep(0);
+  }, []);
+
   return (
     <PageFull>
-      <Row resposive="lg" flexX="stretch" className="m-auto min-h-[45rem]">
+      <Row flexY="stretch" resposive="lg" className="m-auto min-h-[45rem]">
         <Card className="lg:w-1/3">
           <UserData />
           <VerticalNav steps={formStepsMap} />

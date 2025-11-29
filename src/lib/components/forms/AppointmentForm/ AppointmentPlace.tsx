@@ -83,7 +83,9 @@ const AppointmentPlaceForm = (props: IAppoinmentPlaceForm) => {
         <Text fc="red">{formState.errors.clinicId?.message}</Text>
       </Column>
       <Row className="w-fit ml-auto">
-        <ButtonBlue type="submit">Continuar</ButtonBlue>
+        <ButtonBlue type="submit" disabled={!clinicId}>
+          Continuar
+        </ButtonBlue>
       </Row>
     </Form>
   );

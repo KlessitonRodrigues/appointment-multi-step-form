@@ -66,9 +66,8 @@ const clinicsDB: IClinicModel[] = [
 ];
 
 const fakeAPI: IFakeAPI = async (method, path, data) => {
-  const sleep = async () => new Promise((r) => setTimeout(r, 1500));
+  const sleep = async () => new Promise((r) => setTimeout(r, 2000));
   await sleep();
-
   console.log(`FakeAPI called: ${method} ${path}`, data || "");
 
   const endpoints = {
