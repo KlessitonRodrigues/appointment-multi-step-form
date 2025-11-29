@@ -47,7 +47,7 @@ const AppointmentPage = () => {
 
   useEffect(() => {
     formSteps.setStep(0);
-  }, []);
+  }, [formSteps]);
 
   return (
     <PageFull>

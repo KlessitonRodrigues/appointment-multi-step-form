@@ -26,12 +26,9 @@ const useAppointments = () => {
     queryClient
   );
 
-  const editAppointment = useCallback(
-    (data: IAppointmentModel) => {
-      setAppointment((prev) => ({ ...prev, ...data }));
-    },
-    [appointment]
-  );
+  const editAppointment = useCallback((data: IAppointmentModel) => {
+    setAppointment((prev) => ({ ...prev, ...data }));
+  }, []);
 
   return {
     appointment,
