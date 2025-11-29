@@ -107,6 +107,18 @@ const fakeAPI: IFakeAPI = async (method, path, data) => {
         if (index !== -1) clinicsDB.splice(index, 1);
       },
     },
+    "address/clinics": {
+      GET: () => clinicsDB,
+    },
+    "doctors/available": {
+      GET: () => ({ available: doctorsDB, search: doctorsDB }),
+    },
+    "appointment/confirm": {
+      POST: (data: IAppointmentModel) => {
+        appointmentsDB.push(data);
+        return { success: true };
+      },
+    },
   };
 
   // @ts-ignore

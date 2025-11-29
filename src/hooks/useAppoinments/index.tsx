@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { QueryClient, useQuery } from "@tanstack/react-query";
+import { useCallback, useState } from "react";
+import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import { IAppointmentModel } from "src/constants/models";
 import fakeAPI from "src/services/FakeAPI";
 
@@ -17,14 +17,21 @@ const useAppointments = () => {
     queryClient
   );
 
-  const editAppointment = (data: IAppointmentModel) => {
-    setAppointment((prev) => ({ ...prev, ...data }));
-  };
+  const sendAppointment = useMutation(
+    {
+      mutationKey: ["send-appointment"],
+      mutationFn: async (data: IAppointmentModel) =>
+        await fakeAPI("POST", "appointment/confirm", data),
+    },
+    queryClient
+  );
 
-  const sendAppointment = async () => {
-    if (!appointment) return;
-    await fakeAPI("POST", "appointments", appointment);
-  };
+  const editAppointment = useCallback(
+    (data: IAppointmentModel) => {
+      setAppointment((prev) => ({ ...prev, ...data }));
+    },
+    [appointment]
+  );
 
   return {
     appointment,
@@ -35,3 +42,11 @@ const useAppointments = () => {
 };
 
 export default useAppointments;
+
+/*
+  const sendAppointment = useCallback(async () => {
+    if (!appointment) return;
+    await fakeAPI("POST", "appointment/confirm", appointment);
+  }, [appointment]);
+
+*/

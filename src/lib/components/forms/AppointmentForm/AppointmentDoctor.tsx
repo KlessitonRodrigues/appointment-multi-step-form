@@ -48,55 +48,60 @@ const AppointmentDoctorForm = (props: IAppointmentDoctorForm) => {
   return (
     <Form onSubmit={form.handleSubmit(onSubmit)}>
       <Column flexX="start">
-        <Row flexX="between">
-          <Text fs="lg">Baseados em sua pesquisa</Text>
-          <Text fs="sm" fc="blue">
-            Ver mais
-          </Text>
-        </Row>
-        <Text fc="red">{formState.errors.doctorId?.message}</Text>
-        <If condition={getDoctors.isLoading}>
-          <ListLoader title="Aguarde... estamos buscando os médicos disponíveis" />
-        </If>
-        <HorizontalNav>
-          {getDoctors.data?.map((doctor) => (
-            <DoctorCard
-              key={doctor.id}
-              data={doctor}
-              selected={doctorId === doctor.id}
-              onSelect={() => {
-                form.setValue("doctorId", doctor.id);
-                form.setValue("doctorName", doctor.name);
-                form.setValue("price", doctor.price);
-              }}
-            />
-          ))}
-        </HorizontalNav>
+        <Column flexX="start">
+          <Row flexX="between">
+            <Text fs="lg">Baseados em sua pesquisa</Text>
+            <Text fs="sm" fc="blue">
+              Ver mais
+            </Text>
+          </Row>
+          <Text fc="red">{formState.errors.doctorId?.message}</Text>
+          <If condition={getDoctors.isLoading}>
+            <ListLoader title="Aguarde... estamos buscando os médicos disponíveis" />
+          </If>
+          <HorizontalNav>
+            {getDoctors.data?.search?.map((doctor) => (
+              <DoctorCard
+                key={doctor.id}
+                data={doctor}
+                selected={doctorId === doctor.id}
+                onSelect={() => {
+                  form.setValue("doctorId", doctor.id);
+                  form.setValue("doctorName", doctor.name);
+                  form.setValue("price", doctor.price);
+                }}
+              />
+            ))}
+          </HorizontalNav>
+        </Column>
 
-        <Row flexX="between">
-          <Text fs="lg">Médicos recomendados</Text>
-          <Text fs="sm" fc="blue">
-            Ver mais
-          </Text>
-        </Row>
-        <If condition={getDoctors.isLoading}>
-          <ListLoader title="Aguarde... estamos buscando os médicos disponíveis" />
-        </If>
-        <HorizontalNav>
-          {getDoctors.data?.map((doctor) => (
-            <DoctorCard
-              key={doctor.id}
-              data={doctor}
-              selected={doctorId === doctor.id}
-              onSelect={() => {
-                form.setValue("doctorId", doctor.id);
-                form.setValue("doctorName", doctor.name);
-                form.setValue("price", doctor.price);
-              }}
-            />
-          ))}
-        </HorizontalNav>
+        <Column flexX="start">
+          <Row flexX="between">
+            <Text fs="lg">Médicos recomendados</Text>
+            <Text fs="sm" fc="blue">
+              Ver mais
+            </Text>
+          </Row>
+          <If condition={getDoctors.isLoading}>
+            <ListLoader title="Aguarde... estamos buscando os médicos disponíveis" />
+          </If>
+          <HorizontalNav>
+            {getDoctors.data?.available?.map((doctor) => (
+              <DoctorCard
+                key={doctor.id}
+                data={doctor}
+                selected={doctorId === doctor.id}
+                onSelect={() => {
+                  form.setValue("doctorId", doctor.id);
+                  form.setValue("doctorName", doctor.name);
+                  form.setValue("price", doctor.price);
+                }}
+              />
+            ))}
+          </HorizontalNav>
+        </Column>
       </Column>
+
       <Row className="w-fit ml-auto">
         <ButtonOutline type="button" onClick={onBack}>
           Voltar

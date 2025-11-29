@@ -25,10 +25,10 @@ const DoctorCard = (props: IDoctorCard) => {
         </Column>
       </Row>
       <Row gap={1} className="mt-4">
-        <Text tag="span" fo="50" inline>
+        <Text tag="span" fo="50">
           A partir de
         </Text>
-        <Text tag="b" fo="80" fc="blue" inline>
+        <Text fo="80" fc="blue">
           R$ {data?.price}
         </Text>
       </Row>

@@ -8,7 +8,7 @@ const useClinics = () => {
   const getClinics = useQuery<IClinicModel[]>(
     {
       queryKey: ["clinics"],
-      queryFn: async () => await fakeAPI("GET", "clinics"),
+      queryFn: async () => await fakeAPI("GET", "address/clinics"),
     },
     queryClient
   );

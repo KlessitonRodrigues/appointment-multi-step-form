@@ -52,8 +52,6 @@ const AppointmentPaymentForm = (props: IAppointmentPaymentForm) => {
   const paymentId = form.watch("paymentId");
 
   const onSubmit = async (data: IAppointmentModel) => {
-    console.log("PAYMENT", data);
-
     if (props.onSubmit) props.onSubmit(data);
     if (onNext) onNext();
   };

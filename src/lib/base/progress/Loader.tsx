@@ -17,13 +17,17 @@ export const LoaderBg = ({ className, ...props }: ILoader) => {
 
 export const LoaderSpinner = ({ className, ...props }: ILoader) => {
   return (
-    <div
-      {...props}
-      className={twMerge(
-        `loader-spinner w-6 aspect-square border-solid border-[2px] border-transparent
-         border-t-main border-b-main rounded-full`
-      )}
-    />
+    <div {...props}>
+      <RiLoader4Line size={24} className="animate-spin text-default-blue" />
+    </div>
+  );
+};
+
+export const LoaderWhiteSpinner = ({ className, ...props }: ILoader) => {
+  return (
+    <div {...props}>
+      <RiLoader4Line size={24} className="animate-spin text-white" />
+    </div>
   );
 };
 

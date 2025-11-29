@@ -5,10 +5,13 @@ import fakeAPI from "src/services/FakeAPI";
 const queryClient = new QueryClient();
 
 const useDoctors = () => {
-  const getDoctors = useQuery<IDoctorModel[]>(
+  const getDoctors = useQuery<{
+    available: IDoctorModel[];
+    search: IDoctorModel[];
+  }>(
     {
       queryKey: ["doctors"],
-      queryFn: async () => await fakeAPI("GET", "doctors"),
+      queryFn: async () => await fakeAPI("GET", "doctors/available"),
     },
     queryClient
   );

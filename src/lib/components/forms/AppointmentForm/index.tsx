@@ -19,40 +19,47 @@ const AppointmentForm = (props: IAppointmentForm) => {
     <>
       <If condition={formSteps.step === 0}>
         <AppointmentPlaceForm
-          onNext={formSteps.nextStep}
           appointment={appointment}
-          onSubmit={editAppointment}
+          onSubmit={(data) => {
+            editAppointment(data);
+            formSteps.nextStep();
+          }}
         />
       </If>
       <If condition={formSteps.step === 1}>
         <AppointmentDoctorForm
-          onNext={formSteps.nextStep}
-          onBack={formSteps.prevStep}
           appointment={appointment}
-          onSubmit={editAppointment}
+          onSubmit={(data) => {
+            editAppointment(data);
+            formSteps.nextStep();
+          }}
+          onBack={formSteps.prevStep}
         />
       </If>
       <If condition={formSteps.step === 2}>
         <AppointmentPaymentForm
-          onNext={formSteps.nextStep}
-          onBack={formSteps.prevStep}
           appointment={appointment}
-          onSubmit={editAppointment}
+          onSubmit={(data) => {
+            editAppointment(data);
+            formSteps.nextStep();
+          }}
+          onBack={formSteps.prevStep}
         />
       </If>
       <If condition={formSteps.step === 3}>
         <AppointmentResumeForm
-          onNext={formSteps.nextStep}
-          onBack={formSteps.prevStep}
           appointment={appointment}
-          onSubmit={sendAppointment}
+          onSubmit={() => {
+            sendAppointment.mutate(appointment!, {
+              onSuccess: () => formSteps.nextStep(),
+            });
+          }}
+          isLoading={sendAppointment.isPending}
+          onBack={formSteps.prevStep}
         />
       </If>
       <If condition={formSteps.step === 4}>
-        <AppointmentConfirmedForm
-          onNext={formSteps.nextStep}
-          onBack={formSteps.prevStep}
-        />
+        <AppointmentConfirmedForm onBack={formSteps.prevStep} />
       </If>
     </>
   );

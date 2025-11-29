@@ -16,6 +16,19 @@
 
 - run "yarn" and "yarn dev"
 
+#### 🛠️ Test Application
+
+- Run local tests
+
+  ```
+  yarn test-dev
+  ```
+
+- Run production tests
+  ```
+  yarn test-prod
+  ```
+
 #### 📦 Deploy Application
 
 - Generate website assets

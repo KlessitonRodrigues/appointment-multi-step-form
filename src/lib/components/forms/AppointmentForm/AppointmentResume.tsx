@@ -23,6 +23,7 @@ import { dateInputToISO, formatDateAndTime } from "src/utils/date";
 
 type IAppointmentResumeForm = {
   appointment?: IAppointmentModel;
+  isLoading?: boolean;
   onSubmit?: (data: IAppointmentModel) => void;
   onNext?: () => void;
   onBack?: () => void;
@@ -34,10 +35,11 @@ export const resolver: Resolver<IAppointmentModel> = async (data, ctx, opt) => {
 };
 
 const AppointmentResumeForm = (props: IAppointmentResumeForm) => {
-  const { appointment, onNext, onBack } = props;
+  const { appointment, isLoading, onNext, onBack } = props;
   const values = { ...AppointmentModel, ...appointment };
   const { register, formState, ...form } = useForm({ values, resolver });
   const onSubmit = async (data: IAppointmentModel) => {
+    if (props.onSubmit) await props.onSubmit(data);
     if (onNext) onNext();
   };
 
@@ -102,7 +104,9 @@ const AppointmentResumeForm = (props: IAppointmentResumeForm) => {
         <ButtonOutline type="button" onClick={onBack}>
           Voltar
         </ButtonOutline>
-        <ButtonBlue type="submit">Continuar</ButtonBlue>
+        <ButtonBlue type="submit" loading={isLoading}>
+          Continuar
+        </ButtonBlue>
       </Row>
     </Form>
   );

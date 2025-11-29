@@ -1,8 +1,10 @@
 import { twMerge } from "tailwind-merge";
+import { LoaderWhiteSpinner } from "../progress/Loader";
 
 export type IButton = React.HTMLAttributes<HTMLButtonElement> & {
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
+  loading?: boolean;
 };
 
 export const Button = ({ className = "", ...props }: IButton) => {
@@ -18,7 +20,10 @@ export const Button = ({ className = "", ...props }: IButton) => {
          data-[disabled=true]:bg-default-gray`,
         className
       )}
-    />
+    >
+      {props.loading && <LoaderWhiteSpinner />}
+      {props.children}
+    </button>
   );
 };
 
