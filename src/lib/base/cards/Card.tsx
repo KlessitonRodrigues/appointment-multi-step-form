@@ -22,7 +22,7 @@ export const SelectableCard = ({ className, ...props }: ICard) => {
     <Card
       {...props}
       className={twMerge(`border rounded-lg p-4 max-w-sm h-fit cursor-pointer hover:bg-bg2 
-        ${props.selected ? "border-blue-500" : ""} ${className}`)}
+          ${props.selected ? "border-blue-500" : ""} ${className}`)}
     />
   );
 };

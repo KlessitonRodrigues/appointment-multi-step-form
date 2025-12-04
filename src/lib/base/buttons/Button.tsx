@@ -29,19 +29,28 @@ export const Button = ({ className = "", ...props }: IButton) => {
 
 export const ButtonBlue = ({ className = "", ...props }: IButton) => {
   return (
-    <Button {...props} className={`bg-default-blue text-white ${className}`} />
+    <Button
+      {...props}
+      className={`bg-default-blue text-default-white ${className}`}
+    />
   );
 };
 
 export const ButtonGreen = ({ className = "", ...props }: IButton) => {
   return (
-    <Button {...props} className={`bg-default-green text-white ${className}`} />
+    <Button
+      {...props}
+      className={`bg-default-green text-default-white ${className}`}
+    />
   );
 };
 
 export const ButtonRed = ({ className = "", ...props }: IButton) => {
   return (
-    <Button {...props} className={`bg-default-red text-white ${className}`} />
+    <Button
+      {...props}
+      className={`bg-default-red text-default-white ${className}`}
+    />
   );
 };
 
@@ -49,7 +58,7 @@ export const ButtonYellow = ({ className = "", ...props }: IButton) => {
   return (
     <Button
       {...props}
-      className={`bg-default-yellow text-white ${className}`}
+      className={`bg-default-yellow text-default-white ${className}`}
     />
   );
 };

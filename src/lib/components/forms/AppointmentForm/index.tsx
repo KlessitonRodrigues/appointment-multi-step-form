@@ -3,63 +3,64 @@ import AppointmentPlaceForm from "./ AppointmentPlace";
 import AppointmentDoctorForm from "./AppointmentDoctor";
 import AppointmentPaymentForm from "./AppointmentPayment";
 import AppointmentResumeForm from "./AppointmentResume";
-import { IUseFormSteps } from "src/hooks/useFormStep";
 import useAppointments from "src/hooks/useAppoinments";
 import AppointmentConfirmedForm from "./appointmentConfirmed";
 
 type IAppointmentForm = {
-  formSteps: IUseFormSteps;
+  step?: number;
+  nextStep?: () => void;
+  prevStep?: () => void;
 };
 
 const AppointmentForm = (props: IAppointmentForm) => {
-  const { formSteps } = props;
+  const { nextStep, prevStep, step } = props;
   const { appointment, editAppointment, sendAppointment } = useAppointments();
 
   return (
     <>
-      <If condition={formSteps.step === 0}>
+      <If condition={step === 0}>
         <AppointmentPlaceForm
           appointment={appointment}
           onSubmit={(data) => {
             editAppointment(data);
-            formSteps.nextStep();
+            nextStep && nextStep();
           }}
         />
       </If>
-      <If condition={formSteps.step === 1}>
+      <If condition={step === 1}>
         <AppointmentDoctorForm
           appointment={appointment}
           onSubmit={(data) => {
             editAppointment(data);
-            formSteps.nextStep();
+            nextStep && nextStep();
           }}
-          onBack={formSteps.prevStep}
+          onBack={prevStep}
         />
       </If>
-      <If condition={formSteps.step === 2}>
+      <If condition={step === 2}>
         <AppointmentPaymentForm
           appointment={appointment}
           onSubmit={(data) => {
             editAppointment(data);
-            formSteps.nextStep();
+            nextStep && nextStep();
           }}
-          onBack={formSteps.prevStep}
+          onBack={prevStep}
         />
       </If>
-      <If condition={formSteps.step === 3}>
+      <If condition={step === 3}>
         <AppointmentResumeForm
           appointment={appointment}
           onSubmit={() => {
             sendAppointment.mutate(appointment!, {
-              onSuccess: () => formSteps.nextStep(),
+              onSuccess: () => nextStep && nextStep(),
             });
           }}
           isLoading={sendAppointment.isPending}
-          onBack={formSteps.prevStep}
+          onBack={prevStep}
         />
       </If>
-      <If condition={formSteps.step === 4}>
-        <AppointmentConfirmedForm onBack={formSteps.prevStep} />
+      <If condition={step === 4}>
+        <AppointmentConfirmedForm onBack={prevStep} />
       </If>
     </>
   );

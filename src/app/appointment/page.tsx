@@ -1,5 +1,4 @@
 "use client";
-
 import { Row } from "src/lib/base/containers/Flex";
 import { PageFull } from "src/lib/base/containers/Page";
 import { Card } from "src/lib/base/cards/Card";
@@ -38,16 +37,13 @@ const getFormSteps = (step: number) => [
   },
 ];
 
-const AppointmentPage = () => {
-  const formSteps = useFormSteps();
-  const formStepsMap = useMemo(
-    () => getFormSteps(formSteps.step),
-    [formSteps.step]
-  );
+export default function AppointmentPage() {
+  const { step, setStep, nextStep, prevStep } = useFormSteps();
+  const formStepsMap = useMemo(() => getFormSteps(step), [step]);
 
   useEffect(() => {
-    formSteps.setStep(0);
-  }, [formSteps]);
+    setStep(0);
+  }, [setStep]);
 
   return (
     <PageFull>
@@ -57,11 +53,13 @@ const AppointmentPage = () => {
           <VerticalNav steps={formStepsMap} />
         </Card>
         <Card>
-          <AppointmentForm formSteps={formSteps} />
+          <AppointmentForm
+            step={step}
+            nextStep={nextStep}
+            prevStep={prevStep}
+          />
         </Card>
       </Row>
     </PageFull>
   );
-};
-
-export default AppointmentPage;
+}

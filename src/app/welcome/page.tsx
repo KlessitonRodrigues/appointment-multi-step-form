@@ -1,5 +1,4 @@
 "use client";
-
 import { Column, Row } from "src/lib/base/containers/Flex";
 import { PageFull } from "src/lib/base/containers/Page";
 import Text from "src/lib/base/text/Text_2";
@@ -8,7 +7,7 @@ import { ButtonBlue } from "src/lib/base/buttons/Button";
 import Link from "next/link";
 import { AnimationSlide } from "src/lib/base/animations/Slide";
 
-const WelcomePage = () => {
+export default function WelcomePage() {
   return (
     <PageFull className="bg-bg1">
       <Row resposive="md" className="m-auto gap-[6rem]">
@@ -36,6 +35,4 @@ const WelcomePage = () => {
       </Row>
     </PageFull>
   );
-};
-
-export default WelcomePage;
+}
